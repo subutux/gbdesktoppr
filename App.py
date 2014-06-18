@@ -154,16 +154,11 @@ class guiApp(object):
 		self.window.set_title ("Gnome Desktoppr")
 		self.window.connect('delete-event',Gtk.main_quit)
 		self.api = desktoppr.api()
-		if appSettings.get_string("username") != "":
-			builder.get_object("username_input").set_text(appSettings.get_string("username"))
-			self.t = DownloadWallpaperThumbs(api,store,appSettings.get_string("username"),localTempStorage)
-			self.t.start()
+		builder.get_object("username_input").set_text(appSettings.get_string("username"))
+		self.t = DownloadWallpaperThumbs(api,store,appSettings.get_string("username"),localTempStorage)
+		self.t.start()
 	def run(self):
 		self.window.show_all()
-		# If no username is defined, show the settings
-		if appSettings.get_string("username") == "":
-			builder.get_object('login_window').show_all()
-
 		Gtk.main()
 
 if args.randomize:

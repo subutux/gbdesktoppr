@@ -12,7 +12,7 @@
       <description>Run a deamon to randomize my background image using desktoppr</description>
     </key>
 	<key type="s" name="username">
-      <default>''</default>
+      <default>'subutux'</default>
       <summary>Desktoppr username</summary>
       <description>The desktoppr username to use</description>
     </key>

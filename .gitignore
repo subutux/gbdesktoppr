@@ -1,6 +1,3 @@
-# Debian Package info
-debian
-debian/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]

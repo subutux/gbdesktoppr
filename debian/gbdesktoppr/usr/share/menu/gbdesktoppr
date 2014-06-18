@@ -1,5 +1,0 @@
-?package(gbdesktoppr): needs="X11" \
-                    section="System/Administration" \
-                    title="GBDesktoppr" \
-                    command="/usr/bin/gbdesktoppr" \
-                    icon="preferences-desktop-wallpaper"
