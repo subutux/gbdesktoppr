@@ -2,6 +2,7 @@ gbdesktoppr
 ===========
 
 ![screenshot](https://raw.githubusercontent.com/subutux/gbdesktoppr/master/screenshot.png)
+
 Gnome Background Desktoppr! Select a background from your desktoppr collection.
 
 Usage
