@@ -1,7 +1,7 @@
 gbdesktoppr
 ===========
 
-![screenshot](/../gbdesktoppr/screenshot.png?raw:true)
+![screenshot](/../gbdesktoppr/screenshot.png?raw=true)
 Gnome Background Desktoppr! Select a background from your desktoppr collection.
 
 Usage
