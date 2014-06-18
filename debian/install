@@ -1,0 +1,7 @@
+files/apps.gbdesktoppr.gschema.xml /usr/share/glib-2.0/schemas/
+lib/*.py /usr/share/python-support/gbdesktoppr/lib/
+App.py /usr/share/python-support/gbdesktoppr/
+ui.glade /usr/share/python-support/gbdesktoppr/
+gbdesktoppr /usr/bin/
+files/*.desktop /usr/share/applications/
+gbdesktoppr /usr/bin/

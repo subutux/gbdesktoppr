@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=GBDesktoppr
+Comment=Gnome Background Desktoppr
+Exec=gbdesktoppr
+Icon=preferences-desktop-wallpaper
+Terminal=false
+Type=Application
+Categories=System;Settings;GTK
+StartupNotify=true

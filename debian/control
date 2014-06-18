@@ -1,0 +1,19 @@
+Source: gbdesktoppr
+Section: python
+Priority: optional
+Maintainer: Stijn Van Campenhout <subutux@gmail.com>
+Build-Depends: debhelper (>= 7), python-support (>= 0.4)
+Standards-Version: 0.1.0
+Homepage: http://gbdesktoppr.subutux.be
+
+Package: gbdesktoppr
+Architecture: all
+X-Python-Version: >= 2.6
+Depends: ${misc:Depends},
+         ${python:Depends},
+         python-gi,
+         python-argparse,
+         python-urllib3
+Description: A minimal graphical client desktoppr.co
+ Allowing you to select a desktop background
+ from your desktoppr collection. Also contains a random feature.
