@@ -12,7 +12,8 @@ X-Python-Version: >= 2.6
 Depends: ${misc:Depends},
          ${python:Depends},
          python-gi,
-         python-argparse
+         python-argparse,
+         gnome-desktop3-data (>= 3.10)
 Description: A minimal graphical client desktoppr.co
  Allowing you to select a desktop background
  from your desktoppr collection. Also contains a random feature.

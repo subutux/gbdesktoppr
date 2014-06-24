@@ -1,9 +1,9 @@
 Package: gbdesktoppr
-Version: 0.1.0
+Version: 0.1.1
 Architecture: all
 Maintainer: Stijn Van Campenhout <subutux@gmail.com>
 Installed-Size: 113
-Depends: dconf-gsettings-backend | gsettings-backend, python-gi, python-argparse
+Depends: dconf-gsettings-backend | gsettings-backend, python-gi, python-argparse, gnome-desktop3-data (>= 3.10)
 Section: python
 Priority: optional
 Homepage: http://gbdesktoppr.subutux.be
