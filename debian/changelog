@@ -1,3 +1,30 @@
+gbdesktoppr (0.1.1) unstable; urgency=medium
+
+  [ stijn ]
+  * Added debian folder for packaging
+
+  [ Stijn Van Campenhout ]
+  * Create README.md
+  * Update README.md
+  * Update README.md
+
+  [ stijn ]
+  * Added screenshot
+  * fix readme
+
+  [ Stijn Van Campenhout ]
+  * Update README.md
+  * Update README.md
+
+  [ stijn ]
+  * Removed python-urllib3 from dependicies
+  * Default username is now empty & asks for username if empty
+
+  [ stijn ]
+  * Added debian folder for packaging
+
+ -- stijn <stijn@cmelectronics.be>  Tue, 24 Jun 2014 13:54:18 +0200
+
 gbdesktoppr (0.1.0) unstable; urgency=low
 
   * release.
