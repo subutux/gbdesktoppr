@@ -1,0 +1,12 @@
+Package: gbdesktoppr
+Version: 0.1.0
+Architecture: all
+Maintainer: Stijn Van Campenhout <subutux@gmail.com>
+Installed-Size: 113
+Depends: dconf-gsettings-backend | gsettings-backend, python-gi, python-argparse
+Section: python
+Priority: optional
+Homepage: http://gbdesktoppr.subutux.be
+Description: A minimal graphical client desktoppr.co
+ Allowing you to select a desktop background
+ from your desktoppr collection. Also contains a random feature.
