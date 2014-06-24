@@ -1,3 +1,9 @@
+gbdesktoppr (0.1.2) unstable; urgency=medium
+
+  * Added gnome-desktop3-data as dependicy (>= 3.10)
+
+ -- Stijn Van Campenhout <subutux@gmail.com>  Tue, 24 Jun 2014 14:10:43 +0200
+
 gbdesktoppr (0.1.1) unstable; urgency=medium
 
   [ stijn ]
@@ -23,7 +29,7 @@ gbdesktoppr (0.1.1) unstable; urgency=medium
   [ stijn ]
   * Added debian folder for packaging
 
- -- stijn <stijn@cmelectronics.be>  Tue, 24 Jun 2014 14:07:47 +0200
+ -- stijn <stijn@cmelectronics.be>  Tue, 24 Jun 2014 14:10:13 +0200
 
 gbdesktoppr (0.1.0) unstable; urgency=low
 
