@@ -1,3 +1,10 @@
+gbdesktoppr (0.1.3) unstable; urgency=medium
+
+  * All the wallpapers will be loaded + wallpapercount in subtitle
+  * Updated UI layout somewhat of icon view
+
+ -- Stijn Van Campenhout <subutux@gmail.com>  Wed, 25 Jun 2014 14:53:13 +0200
+
 gbdesktoppr (0.1.2) unstable; urgency=medium
 
   * Added gnome-desktop3-data as dependicy (>= 3.10)
@@ -29,7 +36,7 @@ gbdesktoppr (0.1.1) unstable; urgency=medium
   [ stijn ]
   * Added debian folder for packaging
 
- -- stijn <stijn@cmelectronics.be>  Tue, 24 Jun 2014 14:10:13 +0200
+ -- Stijn Van Campenhout <subutux@gmail.com>  Tue, 24 Jun 2014 14:10:13 +0200
 
 gbdesktoppr (0.1.0) unstable; urgency=low
 
