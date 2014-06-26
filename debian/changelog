@@ -4,7 +4,7 @@ gbdesktoppr (0.1.4) unstable; urgency=medium
   * Fixed aboutdialog destroy-event
   * Added spinner,aboutdialog & minor ui tweaks
 
- -- Stijn Van Campenhout<subutux@gmail.com>  Thu, 26 Jun 2014 10:31:24 +0200
+ -- Stijn Van Campenhout <subutux@gmail.com>  Thu, 26 Jun 2014 10:31:24 +0200
 
 gbdesktoppr (0.1.3) unstable; urgency=medium
 
