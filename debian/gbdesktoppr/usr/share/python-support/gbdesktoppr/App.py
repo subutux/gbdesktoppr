@@ -27,32 +27,45 @@ if not os.path.isdir(localTempStorage):
 	os.makedirs(localTempStorage)
 
 class DownloadWallpaperThumbs(threading.Thread):
-	def __init__(self,api,listStore,user,localTempStorage):
+	def __init__(self,api,listStore,headerBar,user,localTempStorage):
 		super(DownloadWallpaperThumbs, self).__init__()
 		self.api = api
 		self.listStore = listStore
 		self.user = user
 		self.CACHE_DIR = localTempStorage
+		print self.CACHE_DIR
+		self.headerBar = headerBar
 	def run(self):
 		url = "/".join([self.api.API_BASE,"users",self.user,"wallpapers"])
 		data = json.loads(urllib2.urlopen(url).read())
 		done = 0
+		currWallpaperNr = 0;
 		while not done:
 			for wallpaper in data['response']:
 				# print wallpaper
+				currWallpaperNr = currWallpaperNr + 1;
+				if currWallpaperNr == 1:
+					txt = "Wallpaper"
+				else:
+					txt = "Wallpapers"
+
+				self.headerBar.set_subtitle(str(currWallpaperNr) + " " + txt)
 				if not os.path.isfile(self.CACHE_DIR + str(wallpaper['id'])):
 					file = open(self.CACHE_DIR + str(wallpaper['id']),'w')
 					file.write(urllib2.urlopen(wallpaper['image']['thumb']['url']).read())
 					file.close()
+
 				pxbf = Pixbuf.new_from_file(self.CACHE_DIR + str(wallpaper['id']))
 				self.listStore.append([
 					str(wallpaper["id"]),
 					wallpaper["image"]["url"],
 					pxbf])
-			if data['pagination']['current'] == data['pagination']['pages']:
+			if not data['pagination']['next']:
+				data['pagination']['next'] = data['pagination']['current']+1
+			data = json.loads(urllib2.urlopen(url + "?page=" + str(data['pagination']['next'])).read())
+			#print "> URL: %s\n> PAGE: %s \n ===========\n" % (url + "?page=" + str(data['pagination']['next']),str(data['pagination']['current'])), data['response']
+			if len(data['response']) == 0:
 				done = 1
-			else:
-				data = json.loads(urllib2.urlopen(url + "?page=" + str(data['pagination']['next'])).read())
 
 class setWallpaperFromUrl(threading.Thread):
 	def __init__(self,url,FromCron=False):
@@ -132,13 +145,11 @@ class guiApp(object):
 		hb.props.show_close_button = True
 		hb.props.title = "Gnome Desktoppr"
 		self.window.set_titlebar(hb)
-
 		button = Gtk.Button(label="Settings")
 		icon = Gio.ThemedIcon(name="preferences-system")
 		image = Gtk.Image.new_from_gicon(icon, Gtk.IconSize.BUTTON)
 		button.add(image)
 		hb.pack_end(button)
-
 
 		#buttonabout = Gtk.Button(label="about")
 		#hb.pack_start(buttonabout)
@@ -155,7 +166,7 @@ class guiApp(object):
 		self.window.connect('delete-event',Gtk.main_quit)
 		self.api = desktoppr.api()
 		builder.get_object("username_input").set_text(appSettings.get_string("username"))
-		self.t = DownloadWallpaperThumbs(api,store,appSettings.get_string("username"),localTempStorage)
+		self.t = DownloadWallpaperThumbs(api,store,hb,appSettings.get_string("username"),localTempStorage)
 		self.t.start()
 	def run(self):
 		self.window.show_all()
