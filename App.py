@@ -36,6 +36,7 @@ class DownloadWallpaperThumbs(threading.Thread):
 		print self.CACHE_DIR
 		self.headerBar = headerBar
 	def run(self):
+		builder.get_object('spinner_overlay').show()
 		url = "/".join([self.api.API_BASE,"users",self.user,"wallpapers"])
 		data = json.loads(urllib2.urlopen(url).read())
 		done = 0
@@ -66,14 +67,19 @@ class DownloadWallpaperThumbs(threading.Thread):
 			#print "> URL: %s\n> PAGE: %s \n ===========\n" % (url + "?page=" + str(data['pagination']['next']),str(data['pagination']['current'])), data['response']
 			if len(data['response']) == 0:
 				done = 1
+				builder.get_object('spinner_overlay').hide()
 
 class setWallpaperFromUrl(threading.Thread):
+
 	def __init__(self,url,FromCron=False):
 		super(setWallpaperFromUrl, self).__init__()
 		self.url = url
 		self.FromCron = FromCron
 
 	def run(self):
+
+		if not self.FromCron:
+			builder.get_object('spinner_overlay').show()
 		filename = backgroundStorage + os.path.basename(self.url)
 		if not os.path.isfile(filename):
 			file = open(filename,'w')
@@ -81,8 +87,10 @@ class setWallpaperFromUrl(threading.Thread):
 			file.close()
 		if self.FromCron:
 			return True
-		gsetWallpaper = Gio.Settings.new('org.gnome.desktop.background')
-		gsetWallpaper.set_string('picture-uri',"file://" + filename)
+		else:
+			gsetWallpaper = Gio.Settings.new('org.gnome.desktop.background')
+			gsetWallpaper.set_string('picture-uri',"file://" + filename)
+			builder.get_object('spinner_overlay').hide()
 
 class signals(object):
 	def onDeleteWindow(self,*args):
@@ -108,13 +116,14 @@ class signals(object):
 			t = DownloadWallpaperThumbs(api,store,builder.get_object("username_input").get_text(),localTempStorage)
 			t.start()
 		builder.get_object('login_window').hide()
-	def on_about_dialog_close(self,dialog):
+	def on_aboutdialog_response(self,dialog,what):
 		dialog.hide()
+		print "Dialog Hidden"
+		return False
 	def on_settings_button_clicked(self,widget):
 		builder.get_object('login_window').show_all()
 	def on_switch_randomize_activate(self,switch,gparams):
 		cron = CronTab(user=True)
-		print "test"
 		if cron.find_comment('gbdesktoppr-timer'):
 			cron.remove_all(comment="gbdesktoppr-timer")
 			cron.write()
@@ -127,8 +136,8 @@ class signals(object):
 			cron.write()
 		else:
 			appSettings.set_boolean("run-random",False)
-	def on_about_button_clicked(self,button):
-		windowAbout.show()
+	def on_button_about_clicked(self,button):
+		builder.get_object('aboutdialog').show_all()
 
 
 class guiApp(object):
@@ -190,6 +199,10 @@ else:
 	GObject.threads_init()
 	builder = Gtk.Builder()
 	builder.add_from_file('ui.glade')
+	builder.get_object('aboutdialog').connect("response", lambda d, r: d.hide())
+	builder.get_object('aboutdialog').connect("close", lambda d: d.hide())
+	builder.get_object('aboutdialog').connect("destroy", lambda d: d.hide())
+	builder.get_object('aboutdialog').connect("destroy-event", lambda d: d.hide())
 	store = builder.get_object("backgrounds_liststore")
 	appSettings = Gio.Settings.new('apps.gbdesktoppr')
 	App = guiApp()
