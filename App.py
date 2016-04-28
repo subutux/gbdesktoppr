@@ -186,7 +186,7 @@ if args.randomize:
 	wallpaper = api.get_random(args.randomize)
 	filename = backgroundStorage + os.path.basename(wallpaper.image_url())
 	# Some hackyness [http://stackoverflow.com/a/10390963]
-	cmd = "export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep gnome-session)/environ|cut -d= -f2-);"
+	cmd = "export DBUS_SESSION_BUS_ADDRESS=$(grep -z DBUS_SESSION_BUS_ADDRESS /proc/$(pgrep -n gnome-session)/environ|cut -d= -f2-);"
 	cmd = cmd + "gsettings set org.gnome.desktop.background picture-uri " + "file://" + filename
 	w = setWallpaperFromUrl(wallpaper.image_url(),FromCron=True)
 	w.start()
